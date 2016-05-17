@@ -1,3 +1,10 @@
 <h1>
   {{title}}
 </h1>
+
+[ <a [routerLink]="['/sync']">Data Sync</a>
+| <a [routerLink]="['/triage_pr']">Triage PR</a>
+| <a href (click)="auth(); $event.preventDefault()">auth</a>
+]
+
+<router-outlet></router-outlet>

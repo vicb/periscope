@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let pr of prs | async">
+    <a href="{{pr.html_url}}" target="_blank">#{{pr.number}}</a>
+  </li>
+</ul>
+<input type="text" #prNumberInput>
+<button (click)="sync(prNumberInput.value)">sync</button>
