@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PullRequest, Issue, BaseIssue } from '../github/v3';
-import { GithubStore } from '../github/store';
+import { PullRequest, Issue, BaseIssue, Event } from '../github/v3';
+import { GithubStore, Digest } from '../github/store';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 
@@ -11,17 +11,21 @@ import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
   templateUrl: 'sync.component.html',
   styleUrls: ['sync.component.css']
 })
-export class SyncComponent implements OnInit {
-  prs: FirebaseListObservable<PullRequest[]>;
+export class SyncComponent {
+  prs: FirebaseListObservable<Digest[]>;
+  events: FirebaseListObservable<Event[]>;
 
   constructor(private store: GithubStore) {
-    this.prs = store.getPrs();
-  }
-
-  ngOnInit() {
+    this.events = store.getWebhookEvents();
+    this.prs = store.getOpenPrDigests();
   }
   
-  sync(prNumber: string) {
+  syncPr(number: string) {
+    this.store.updatePr(Number.parseInt(number));
+  }
+
+  syncAllPRs() {
     this.store.updatePrs();
   }
+  
 }

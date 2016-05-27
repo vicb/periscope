@@ -69,7 +69,6 @@ export interface BaseIssue {
 
 export interface Issue extends BaseIssue {
   repository_url: string,
-  labels: LabelRef[],
   state: string,
   locked: boolean,
   closed_at: any,
@@ -102,4 +101,15 @@ export interface PullRequest extends BaseIssue {
   additions: number,
   deletions: number,
   changed_files: number
+}
+
+
+export interface Event {
+  action: string,
+  comment?: Comment,
+  issue?: Issue,
+  pull_request?: PullRequest,
+  organization: any,
+  repository: any,
+  sender: User
 }

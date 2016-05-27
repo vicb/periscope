@@ -37,6 +37,7 @@ const barrels: string[] = [
   'app/shared',
   'app/+triage-pr',
   'app/+sync',
+  'app/pr',
   /** @cli-barrel */
 ];
 
