@@ -42,7 +42,6 @@ import { GithubStore } from './github/store';
   {path: '/sync', component: SyncComponent}
 ])
 export class PeriscopeAppComponent {
-  title = 'periscope works!';
   authState: FirebaseAuthState;
 
   constructor(private af: AngularFire) {}

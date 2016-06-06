@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { AsyncPipe, NgFor } from '@angular/common';
 import { Event } from '../github/v3';
 import { GithubStore, Digest } from '../github/store';
-import { FirebaseListObservable } from 'angularfire2';
-
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   moduleId: module.id,

@@ -14,9 +14,4 @@ describe('App: Periscope', () => {
       inject([PeriscopeAppComponent], (app: PeriscopeAppComponent) => {
     expect(app).toBeTruthy();
   }));
-
-  it('should have as title \'periscope works!\'',
-      inject([PeriscopeAppComponent], (app: PeriscopeAppComponent) => {
-    expect(app.title).toEqual('periscope works!');
-  }));
 });

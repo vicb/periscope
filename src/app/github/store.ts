@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PullRequest, Issue, BaseIssue, LabelRef, Event } from './v3';
+import { PullRequest, Issue, LabelRef, Event } from './v3';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscriber } from 'rxjs/Subscriber';
@@ -15,34 +15,30 @@ import 'rxjs/add/operator/retryWhen';
 import 'rxjs/add/observable/timer';
 import {
   AngularFire,
-  FirebaseListObservable,
   FirebaseObjectObservable,
-  FirebaseAuthState
 } from 'angularfire2';
 
 const EVENTS = '/github_webhook_events';
 const EVENTS_LEASE = '/github_webhook_events_lease';
+const LEASE_TIME = 30 * 1000;
 
-interface AquireLockResult {
+interface AcquireLockResult {
   isMaster: boolean;
   duration: number;
 }
 
 @Injectable()
 export class GithubStore {
-  static LEASE_TIME = 1 * 1000;
-
   isMaster: boolean = false;
 
   constructor(private af: AngularFire, private http: Http) {
-    var eventsSubscription: Subscription = null;
-    let [aquireLock, releaseLock] = this.aquireWebhookLock().partition((v) => v.isMaster);
-    var x = aquireLock
+    let [acquireLock, releaseLock] = this.acquireWebhookLock().partition((v) => v.isMaster);
+    acquireLock
       .flatMap((_)=> this.getWebhookEvents(1).map((i) => i[0]).filter((v) => !!v))
-      .takeUntil(releaseLock);
-    x.subscribe((event) => {
-      this._consumeEvent(this.af.database.object(EVENTS + '/' + event['$key']));
-    });
+      .takeUntil(releaseLock)
+      .subscribe((event) => {
+        this._consumeEvent(this.af.database.object(EVENTS + '/' + event['$key']));
+      });
   }
 
   private _consumeEvent(event: FirebaseObjectObservable<Event>) {
@@ -90,17 +86,17 @@ export class GithubStore {
     return this.af.database.list(EVENTS, {query: {limitToFirst: limitTo}});
   }
 
-  aquireWebhookLock(limitTo: number = 10): Observable<AquireLockResult> {
+  acquireWebhookLock(): Observable<AcquireLockResult> {
     var eventsLease = this.af.database.object(EVENTS_LEASE);
     var ref: any = (<any>eventsLease)._ref; // https://github.com/angular/angularfire2/issues/201
     var lastLease = -1;
-    return new Observable<AquireLockResult>((subscriber: Subscriber<AquireLockResult>) => {
+    return new Observable<AcquireLockResult>((subscriber: Subscriber<AcquireLockResult>) => {
       var now = Date.now();
       var id: number;
       ref.transaction(
         (expireTime: number = 0) => {
           if (expireTime == lastLease || now > expireTime) {
-            return now + GithubStore.LEASE_TIME;
+            return now + LEASE_TIME;
           }
         },
         (error, committed: boolean, expirationTimeRef: any) => {
@@ -108,10 +104,10 @@ export class GithubStore {
           subscriber.next({isMaster: committed, duration: duration});
           if (committed) {
             lastLease = expirationTimeRef.val();
-            id = setTimeout(() => subscriber.complete(), duration - GithubStore.LEASE_TIME * .1);
+            id = setTimeout(() => subscriber.complete(), duration - LEASE_TIME * .1);
           } else {
             lastLease = -1;
-            id = setTimeout(() => subscriber.complete(), duration + GithubStore.LEASE_TIME * 1.5);
+            id = setTimeout(() => subscriber.complete(), duration);
           }
         });
       return () => {
