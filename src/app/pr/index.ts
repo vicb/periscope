@@ -1,1 +1,1 @@
-export { PrComponent } from './pr.component';
+export {PrComponent} from './pr.component';

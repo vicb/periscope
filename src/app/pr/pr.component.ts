@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Digest } from '../github/store';
+import {Component, Input} from '@angular/core';
+import {Digest} from '../github/store';
 
 @Component({
   moduleId: module.id,
@@ -10,7 +10,5 @@ import { Digest } from '../github/store';
 export class PrComponent {
   prDigest: Digest;
   @Input()
-  set pr(pr: number | Digest) {
-    this.prDigest = <Digest>pr;
-  }
+  set pr(pr: number|Digest) { this.prDigest = <Digest>pr; }
 }

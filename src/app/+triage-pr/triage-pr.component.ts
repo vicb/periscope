@@ -1,7 +1,8 @@
-import { Component, Injectable, forwardRef } from '@angular/core';
-import { NgFor } from '@angular/common';
-import { PrComponent } from '../pr/pr.component';
-import { PrBoardService, Staleness } from '../pr-board.service';
+import {NgFor} from '@angular/common';
+import {Component, Injectable, forwardRef} from '@angular/core';
+
+import {PrBoardService, Staleness} from '../pr-board.service';
+import {PrComponent} from '../pr/pr.component';
 
 
 @Component({
@@ -19,7 +20,5 @@ export class TriagePrComponent {
     this.state = prState;
   }
 
-  sum(s: Staleness) {
-    return s.length;
-  }
+  sum(s: Staleness) { return s.length; }
 }
