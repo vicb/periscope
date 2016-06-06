@@ -1,12 +1,12 @@
 <h1>WebHook Queue</h1>
 <table>
   <tr>
-    <th>key</th>
-    <th>action</th>
-    <th>issue</th>
-    <th>PR</th>
-    <th>comment</th>
-    <th>label</th>
+    <th i18n>key</th>
+    <th i18n>action</th>
+    <th i18n>issue</th>
+    <th i18n>PR</th>
+    <th i18n>comment</th>
+    <th i18n>label</th>
   </tr>
   <tr *ngFor="let event of events | async">
     <td>
@@ -25,5 +25,5 @@
 </span>
 <hr>
 <input type="text" #prNumberInput>
-  <button (click)="syncPr(prNumberInput.value)">sync PR</button><br>
-<button (click)="syncAllPRs()">sync All PRs</button><br>
+  <button (click)="syncPr(prNumberInput.value)" i18n>sync PR</button><br>
+<button (click)="syncAllPRs()" i18n>sync All PRs</button><br>

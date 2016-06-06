@@ -1,17 +1,17 @@
 <table>
   <tr>
     <th></th>
-    <th>Hour</th>
-    <th>Hours</th>
-    <th>Day</th>
-    <th>Days</th>
-    <th>Week</th>
-    <th>Weeks</th>
-    <th>Month</th>
-    <th>Months</th>
+    <th i18n>Hour</th>
+    <th i18n>Hours</th>
+    <th i18n>Day</th>
+    <th i18n>Days</th>
+    <th i18n>Week</th>
+    <th i18n>Weeks</th>
+    <th i18n>Month</th>
+    <th i18n>Months</th>
   <tr>
   <tr>
-    <th>Untriaged {{state.untriaged.length}}</th>
+    <th i18n>Untriaged {{state.untriaged.length}}</th>
     <td><app-pr *ngFor="let pr of state.untriaged.hour" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.untriaged.hours" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.untriaged.day" [pr]="pr"></app-pr></td>
@@ -22,7 +22,7 @@
     <td><app-pr *ngFor="let pr of state.untriaged.months" [pr]="pr"></app-pr></td>
   <tr>
   <tr>
-    <th>Assigned {{state.assigned.length}}</th>
+    <th i18n>Assigned {{state.assigned.length}}</th>
     <td><app-pr *ngFor="let pr of state.assigned.hour" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.assigned.hours" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.assigned.day" [pr]="pr"></app-pr></td>
@@ -33,7 +33,7 @@
     <td><app-pr *ngFor="let pr of state.assigned.months" [pr]="pr"></app-pr></td>
   <tr>
   <tr>
-    <th>CleanUp {{state.cleanup.length}}</th>
+    <th i18n>CleanUp {{state.cleanup.length}}</th>
     <td><app-pr *ngFor="let pr of state.cleanup.hour" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.cleanup.hours" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.cleanup.day" [pr]="pr"></app-pr></td>
@@ -44,7 +44,7 @@
     <td><app-pr *ngFor="let pr of state.cleanup.months" [pr]="pr"></app-pr></td>
   <tr>
   <tr>
-    <th>Reviewed {{state.reviewed.length}}</th>
+    <th i18n>Reviewed {{state.reviewed.length}}</th>
     <td><app-pr *ngFor="let pr of state.reviewed.hour" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.reviewed.hours" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.reviewed.day" [pr]="pr"></app-pr></td>
@@ -55,7 +55,7 @@
     <td><app-pr *ngFor="let pr of state.reviewed.months" [pr]="pr"></app-pr></td>
   <tr>
   <tr>
-    <th>Ready {{state.ready.length}}</th>
+    <th i18n>Ready {{state.ready.length}}</th>
     <td><app-pr *ngFor="let pr of state.ready.hour" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.ready.hours" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.ready.day" [pr]="pr"></app-pr></td>
@@ -66,7 +66,7 @@
     <td><app-pr *ngFor="let pr of state.ready.months" [pr]="pr"></app-pr></td>
   <tr>
   <tr>
-    <th>Other {{state.other.length}}</th>
+    <th i18n>Other {{state.other.length}}</th>
     <td><app-pr *ngFor="let pr of state.other.hour" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.other.hours" [pr]="pr"></app-pr></td>
     <td><app-pr *ngFor="let pr of state.other.day" [pr]="pr"></app-pr></td>

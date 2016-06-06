@@ -1,8 +1,8 @@
 [ <a [routerLink]="['/sync']">Data Sync</a>
 | <a [routerLink]="['/triage_pr']">Triage PR</a>
-| <a href (click)="auth(); $event.preventDefault()" [hidden]="authState">auth</a>
-  <a href (click)="logout(); $event.preventDefault()" [hidden]="!authState">
-    signout: {{authState?.github?.username}}
+| <a href (click)="auth(); $event.preventDefault()" [hidden]="authState" i18n>log in</a>
+  <a href (click)="logout(); $event.preventDefault()" [hidden]="!authState" i18n>
+    log out: {{authState?.github?.username}}
   </a>
 ]
 
