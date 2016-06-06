@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 
 import {GithubStore, Digest} from './github/store';
 
-const Label = {
+const LABELS = {
   LGTM: 'pr_state: LGTM',
   Merge: 'pr_action: merge',
   Cleanup: 'pr_action: cleanup'
-}
+};
 
-@Injectable() export class PrBoardService {
+@Injectable()
+export class PrBoardService {
   untriaged = new Staleness();
   assigned = new Staleness();
   reviewed = new Staleness();
@@ -43,7 +44,7 @@ const Label = {
       console.log(pr);
     }
     if (!pr.assigned) {
-      this.untriaged.add(pr)
+      this.untriaged.add(pr);
     } else if (labels['pr_action'] == 'cleanup') {
       this.cleanup.add(pr);
     } else if (labels['pr_state'] == 'LGTM') {

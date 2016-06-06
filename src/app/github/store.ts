@@ -12,7 +12,6 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Subscriber} from 'rxjs/Subscriber';
-import {Subscription} from 'rxjs/Subscription';
 
 import {PullRequest, Issue, LabelRef, Event} from './v3';
 
@@ -44,7 +43,7 @@ export class GithubStore {
     event.subscribe((e: Event) => {
       if (!e) return;
       console.log(e);
-      switch (e && e.action) {
+      switch (e.action) {
         case 'synchronize':
         case 'labeled':
         case 'unlabeled':
@@ -74,7 +73,7 @@ export class GithubStore {
         default:
           console.error('unknown action: ' + (e.action));
       }
-    })
+    });
   }
 
   getOpenPrDigests(): Observable<Digest[]> {
@@ -112,16 +111,16 @@ export class GithubStore {
              return () => {
                clearTimeout(id);
                id = null;
-             }
+             };
            })
         .repeat()
         .distinctUntilChanged((a, b) => a.isMaster == b.isMaster)
         .share();
   }
 
-  updatePr(prNumber: number): void { return this._update(PR_EXTRACTOR, prNumber); }
+  updatePr(prNumber: number): void { this._update(PR_EXTRACTOR, prNumber); }
 
-  updatePrs() { return this._updateAll(PR_EXTRACTOR) }
+  updatePrs() { this._updateAll(PR_EXTRACTOR); }
 
   private _updateAll(extractor: Extractor): void {
     var fetchPage = (page: number) => {

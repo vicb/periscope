@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {HTTP_PROVIDERS} from '@angular/http'
+import {HTTP_PROVIDERS} from '@angular/http';
 import {Routes, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import {AngularFire, FIREBASE_PROVIDERS, AuthProviders, AuthMethods, FirebaseAuthState, FirebaseAuthConfig, FirebaseUrl} from 'angularfire2';
 

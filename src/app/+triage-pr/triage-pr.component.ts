@@ -1,5 +1,5 @@
 import {NgFor} from '@angular/common';
-import {Component, Injectable, forwardRef} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {PrBoardService, Staleness} from '../pr-board.service';
 import {PrComponent} from '../pr/pr.component';
@@ -13,12 +13,7 @@ import {PrComponent} from '../pr/pr.component';
   directives: [PrComponent, NgFor]
 })
 export class TriagePrComponent {
-  state: PrBoardService;
+  constructor(public state: PrBoardService) {}
 
-  constructor(prState: PrBoardService) {
-    console.log('Triage');
-    this.state = prState;
-  }
-
-  sum(s: Staleness) { return s.length; }
+  sum(s: Staleness): number { return s.length; }
 }

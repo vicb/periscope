@@ -22,7 +22,7 @@ export class SyncComponent {
     this.prs = store.getOpenPrDigests();
   }
 
-  syncPr(number: string) { this.store.updatePr(Number.parseInt(number)); }
+  syncPr(count: string) { this.store.updatePr(Number.parseInt(count, 10)); }
 
   syncAllPRs() { this.store.updatePrs(); }
 }
