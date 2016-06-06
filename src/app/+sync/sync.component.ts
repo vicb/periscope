@@ -12,8 +12,8 @@ import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
   styleUrls: ['sync.component.css']
 })
 export class SyncComponent {
-  prs: FirebaseListObservable<Digest[]>;
-  events: FirebaseListObservable<Event[]>;
+  prs: Observable<Digest[]>;
+  events: Observable<Event[]>;
 
   constructor(private store: GithubStore) {
     this.events = store.getWebhookEvents();

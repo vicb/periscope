@@ -30,17 +30,17 @@ interface AquireLockResult {
 
 @Injectable()
 export class GithubStore {
-  static LEASE_TIME = 30 * 1000;
+  static LEASE_TIME = 1 * 1000;
   
   isMaster: boolean = false;
   
   constructor(private af: AngularFire, private http: Http) {
     var eventsSubscription: Subscription = null;
     let [aquireLock, releaseLock] = this.aquireWebhookLock().partition((v) => v.isMaster); 
-    var x = aquireLock.do((v) => console.log('DO', v))
+    var x = aquireLock
       .flatMap((_)=> this.getWebhookEvents(1).map((i) => i[0]).filter((v) => !!v))
       .takeUntil(releaseLock);
-    x.subscribe(() => {
+    x.subscribe((event) => {
       this._consumeEvent(this.af.database.object(EVENTS + '/' + event['$key']));      
     });
   }
@@ -118,7 +118,10 @@ export class GithubStore {
         clearTimeout(id);
         id = null;
       }
-    }).repeat().distinctUntilChanged((a, b) => a.isMaster == b.isMaster).share();
+    })
+      .repeat()
+      .distinctUntilChanged((a, b) => a.isMaster == b.isMaster)
+      .share();
   }
   
   updatePr(prNumber: number): void {
