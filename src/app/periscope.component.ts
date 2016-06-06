@@ -4,14 +4,14 @@ import { Routes , ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from '@angular/router';
 import { SyncComponent } from './+sync';
 import { HTTP_PROVIDERS } from '@angular/http'
 import { PrBoardService } from './pr-board.service';
-import { 
+import {
   AngularFire,
-  FIREBASE_PROVIDERS, 
-  defaultFirebase, 
-  firebaseAuthConfig,
+  FIREBASE_PROVIDERS,
   AuthProviders,
   AuthMethods,
-  FirebaseAuthState
+  FirebaseAuthState,
+  FirebaseAuthConfig,
+  FirebaseUrl
 } from 'angularfire2';
 import { GithubStore } from './github/store';
 
@@ -24,11 +24,14 @@ import { GithubStore } from './github/store';
   providers: [
     HTTP_PROVIDERS,
     FIREBASE_PROVIDERS,
-    defaultFirebase('https://ngperiscope.firebaseio.com'),
-    firebaseAuthConfig({
-      provider: AuthProviders.Github,
-      method: AuthMethods.Popup
-    }),
+    {provide: FirebaseUrl, useValue: 'https://ngperiscope.firebaseio.com'},
+    {
+      provide: FirebaseAuthConfig,
+      useValue: {
+        provider: AuthProviders.Github,
+        method: AuthMethods.Popup
+      }
+    },
     ROUTER_PROVIDERS,
     GithubStore,
     PrBoardService
@@ -41,15 +44,13 @@ import { GithubStore } from './github/store';
 export class PeriscopeAppComponent {
   title = 'periscope works!';
   authState: FirebaseAuthState;
-  
-  constructor(private af: AngularFire) {
-    this.authState = af.auth.getAuth();  
-  }
-  
+
+  constructor(private af: AngularFire) {}
+
   auth() {
     this.af.auth.login().then((authState) => this.authState = authState);
   }
-  
+
   logout() {
     this.af.auth.logout();
     this.authState = null;

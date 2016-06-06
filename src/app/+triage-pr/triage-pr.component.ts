@@ -1,4 +1,5 @@
 import { Component, Injectable, forwardRef } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { PrComponent } from '../pr/pr.component';
 import { PrBoardService, Staleness } from '../pr-board.service';
 
@@ -8,7 +9,7 @@ import { PrBoardService, Staleness } from '../pr-board.service';
   selector: 'app-triage-pr',
   templateUrl: 'triage-pr.component.html',
   styleUrls: ['triage-pr.component.css'],
-  directives: [PrComponent]
+  directives: [PrComponent, NgFor]
 })
 export class TriagePrComponent {
   state: PrBoardService;
@@ -17,7 +18,7 @@ export class TriagePrComponent {
     console.log('Triage');
     this.state = prState;
   }
-  
+
   sum(s: Staleness) {
     return s.length;
   }

@@ -3,6 +3,8 @@
 # compiled output
 /dist
 /tmp
+*.shim.ts
+*.ngfactory.ts
 
 # dependencies
 /node_modules

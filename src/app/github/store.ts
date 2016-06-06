@@ -13,9 +13,9 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/repeat';
 import 'rxjs/add/operator/retryWhen';
 import 'rxjs/add/observable/timer';
-import { 
-  AngularFire, 
-  FirebaseListObservable, 
+import {
+  AngularFire,
+  FirebaseListObservable,
   FirebaseObjectObservable,
   FirebaseAuthState
 } from 'angularfire2';
@@ -31,63 +31,63 @@ interface AquireLockResult {
 @Injectable()
 export class GithubStore {
   static LEASE_TIME = 1 * 1000;
-  
+
   isMaster: boolean = false;
-  
+
   constructor(private af: AngularFire, private http: Http) {
     var eventsSubscription: Subscription = null;
-    let [aquireLock, releaseLock] = this.aquireWebhookLock().partition((v) => v.isMaster); 
+    let [aquireLock, releaseLock] = this.aquireWebhookLock().partition((v) => v.isMaster);
     var x = aquireLock
       .flatMap((_)=> this.getWebhookEvents(1).map((i) => i[0]).filter((v) => !!v))
       .takeUntil(releaseLock);
     x.subscribe((event) => {
-      this._consumeEvent(this.af.database.object(EVENTS + '/' + event['$key']));      
+      this._consumeEvent(this.af.database.object(EVENTS + '/' + event['$key']));
     });
   }
-  
+
   private _consumeEvent(event: FirebaseObjectObservable<Event>) {
     event.subscribe((e: Event) => {
       if (!e) return;
       console.log(e);
       switch (e && e.action) {
-        case "synchronize": 
-        case "labeled": 
-        case "unlabeled": 
-        case "assigned": 
-        case "unassigned": 
-        case "opened": 
-        case "closed": 
-        case "reopened": 
-        case "edited": 
-        case "created": 
-        case "deleted": 
+        case "synchronize":
+        case "labeled":
+        case "unlabeled":
+        case "assigned":
+        case "unassigned":
+        case "opened":
+        case "closed":
+        case "reopened":
+        case "edited":
+        case "created":
+        case "deleted":
           if (e.issue) {
             this._updateObject(ISSUE_EXTRACTOR, e.issue);
             event.remove();
           } else if (e.pull_request) {
             this._updateObject(PR_EXTRACTOR, e.pull_request);
-            event.remove();            
+            event.remove();
           } else {
-            console.error('unknown event: ', e);            
+            console.error('unknown event: ', e);
           }
           break;
-        case "deleted": 
+        case "deleted":
           if (e.comment) {
             // We don't process comments
             event.remove();
-          }        
-        default: 
+          }
+        default:
           console.error('unknown action: ' + (e.action));
       }
     })
   }
-  
+
   getOpenPrDigests(): Observable<Digest[]> {
-    return this.af.database.list(PR_EXTRACTOR.digestUrl + '/open');    
+    return this.af.database.list(PR_EXTRACTOR.digestUrl + '/open');
   }
 
   getWebhookEvents(limitTo: number = 10): Observable<Event[]> {
-    return this.af.database.list(EVENTS, {query: {limitToFirst: limitTo}});    
+    return this.af.database.list(EVENTS, {query: {limitToFirst: limitTo}});
   }
 
   aquireWebhookLock(limitTo: number = 10): Observable<AquireLockResult> {
@@ -104,10 +104,10 @@ export class GithubStore {
           }
         },
         (error, committed: boolean, expirationTimeRef: any) => {
-          var duration = expirationTimeRef.val() - now;                      
+          var duration = expirationTimeRef.val() - now;
           subscriber.next({isMaster: committed, duration: duration});
           if (committed) {
-            lastLease = expirationTimeRef.val();            
+            lastLease = expirationTimeRef.val();
             id = setTimeout(() => subscriber.complete(), duration - GithubStore.LEASE_TIME * .1);
           } else {
             lastLease = -1;
@@ -123,15 +123,15 @@ export class GithubStore {
       .distinctUntilChanged((a, b) => a.isMaster == b.isMaster)
       .share();
   }
-  
+
   updatePr(prNumber: number): void {
     return this._update(PR_EXTRACTOR, prNumber);
   }
-  
+
   updatePrs() {
     return this._updateAll(PR_EXTRACTOR)
   }
-  
+
   private _updateAll(extractor: Extractor): void {
     var fetchPage = (page: number) => {
       this
@@ -143,16 +143,16 @@ export class GithubStore {
           });
           if (prs.length) fetchPage(page + 1);
         });
-    }
+    };
     fetchPage(0);
   }
-  
+
   private _update(extractor: Extractor, number: number): void {
     this
       ._get(extractor.githubUrl + '/' + number)
       .subscribe(
         (prResponse: Response) => this._updateObject(extractor, prResponse.json()),
-        (error: Response) => console.error(error) 
+        (error: Response) => console.error(error)
       );
       //TODO: how do I return FirebaseObjectObservable<PullRequest>?
   }
@@ -167,27 +167,27 @@ export class GithubStore {
         var close = db.object(extractor.rawUrl + '/close/' + prOrIssue.number);
         var openDigest = db.object(extractor.digestUrl + '/open/' + prOrIssue.number);
         var closeDigest = db.object(extractor.digestUrl + '/close/' + prOrIssue.number);
-        var digest = extractor.digest(prOrIssue, labels)
+        var digest = extractor.digest(prOrIssue, labels);
         if (prOrIssue.closed_at) {
           close.set(prOrIssue);
           closeDigest.set(digest);
-          open.remove();     
-          openDigest.remove(); 
+          open.remove();
+          openDigest.remove();
         } else {
           open.set(prOrIssue);
           openDigest.set(digest);
           close.remove();
           closeDigest.remove();
         }
-      });    
+      });
   }
-  
+
   private _get(path: string, params: {[k:string]: any} = {}): Observable<Response> {
-    var authState: FirebaseAuthState = this.af.auth.getAuth();
-    var accessToken: string = authState.github.accessToken;
+    var authState: FirebaseAuthData = this.af.auth.getAuth();
+    var accessToken: string = (<any>authState).github.accessToken;
     var qParams = [];
     Object.keys(params).forEach((key) => qParams.push(key + '=' + params[key]));
-    return this.http.get('https://api.github.com/repos/angular/angular' 
+    return this.http.get('https://api.github.com/repos/angular/angular'
         + path + '?' + qParams.join('&'), {
           headers: new Headers({"Authorization": "token " + accessToken})
         });
@@ -198,7 +198,7 @@ abstract class Extractor {
   githubUrl: string;
   rawUrl: string;
   digestUrl: string;
-  
+
   digest(prOrIssue: PullRequest | Issue, labels: LabelRef[]): Digest {
     return {
       number: prOrIssue.number,
@@ -238,7 +238,7 @@ export interface Digest {
   comments: number;
 }
 
-const LABEL_REGEXP = /^(\w+)(\d*)\:\s*(.*)$/;
+const LABEL_REGEXP = /^(\w+)(\d*):\s*(.*)$/;
 
 function extractLabels(labels: LabelRef[]): {[key:string]: string} {
   var labelsMap: {[key:string]: string} = {};

@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { PullRequest, Issue, BaseIssue, Event } from '../github/v3';
+import { Component } from '@angular/core';
+import { AsyncPipe, NgFor } from '@angular/common';
+import { Event } from '../github/v3';
 import { GithubStore, Digest } from '../github/store';
-import { Observable } from 'rxjs/Observable';
-import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+import { FirebaseListObservable } from 'angularfire2';
 
 
 @Component({
   moduleId: module.id,
   selector: 'app-sync',
   templateUrl: 'sync.component.html',
-  styleUrls: ['sync.component.css']
+  styleUrls: ['sync.component.css'],
+  pipes: [AsyncPipe],
+  directives: [NgFor]
 })
 export class SyncComponent {
   prs: Observable<Digest[]>;
@@ -19,7 +21,7 @@ export class SyncComponent {
     this.events = store.getWebhookEvents();
     this.prs = store.getOpenPrDigests();
   }
-  
+
   syncPr(number: string) {
     this.store.updatePr(Number.parseInt(number));
   }
@@ -27,5 +29,5 @@ export class SyncComponent {
   syncAllPRs() {
     this.store.updatePrs();
   }
-  
+
 }
