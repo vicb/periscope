@@ -2,7 +2,7 @@ import {AsyncPipe, NgFor} from '@angular/common';
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import {GithubStore, Digest} from '../github/store';
+import {Digest, GithubStore} from '../github/store';
 import {Event} from '../github/v3';
 
 @Component({

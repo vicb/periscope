@@ -1,4 +1,4 @@
-import {enableProdMode, SystemJsComponentResolver, ComponentResolver, } from '@angular/core';
+import {enableProdMode, SystemJsComponentResolver, ComponentResolver,} from '@angular/core';
 import {bootstrap} from '@angular/platform-browser';
 import {PeriscopeAppComponent, environment} from './app';
 import {RuntimeCompiler} from '@angular/compiler';
@@ -9,10 +9,7 @@ const routes = [
     path: '/triage_pr',
     component: './app/+triage-pr',
   },
-  {
-    path: '/sync',
-    component: './app/+sync'
-  }
+  {path: '/sync', component: './app/+sync'}
 ];
 
 
@@ -22,5 +19,9 @@ if (environment.production) {
 
 bootstrap(PeriscopeAppComponent, [
   provideRouter(routes),
-  {provide: ComponentResolver, useFactory: (r)=> new SystemJsComponentResolver(r), deps: [RuntimeCompiler]},
+  {
+    provide: ComponentResolver,
+    useFactory: (r) => new SystemJsComponentResolver(r),
+    deps: [RuntimeCompiler]
+  },
 ]);

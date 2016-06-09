@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 
-import {GithubStore, Digest} from './github/store';
+import {Digest, GithubStore} from './github/store';
 
 const LABELS = {
   LGTM: 'pr_state: LGTM',

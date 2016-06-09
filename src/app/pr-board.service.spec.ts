@@ -1,4 +1,5 @@
-import {beforeEachProviders, it, describe, expect, inject} from '@angular/core/testing';
+import {beforeEachProviders, describe, expect, inject, it} from '@angular/core/testing';
+
 import {PrBoardService} from './pr-board.service';
 
 describe('PrBoard Service', () => {

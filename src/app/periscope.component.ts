@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {HTTP_PROVIDERS} from '@angular/http';
-import {AngularFire, FIREBASE_PROVIDERS, AuthProviders, AuthMethods, FirebaseAuthState, FirebaseAuthConfig, FirebaseUrl} from 'angularfire2';
 import {ROUTER_DIRECTIVES} from '@angular/router';
+import {AngularFire, AuthMethods, AuthProviders, FIREBASE_PROVIDERS, FirebaseAuthConfig, FirebaseAuthState, FirebaseUrl} from 'angularfire2';
+
 import {GithubStore} from './github/store';
 import {PrBoardService} from './pr-board.service';
 
@@ -11,15 +12,13 @@ import {PrBoardService} from './pr-board.service';
   templateUrl: 'periscope.component.html',
   styleUrls: ['periscope.component.css'],
   directives: [ROUTER_DIRECTIVES],
-  providers: [,
-    HTTP_PROVIDERS,
-    FIREBASE_PROVIDERS,
+  providers: [
+    HTTP_PROVIDERS, FIREBASE_PROVIDERS,
     {provide: FirebaseUrl, useValue: 'https://ngperiscope.firebaseio.com'}, {
       provide: FirebaseAuthConfig,
       useValue: {provider: AuthProviders.Github, method: AuthMethods.Popup}
     },
-    GithubStore,
-    PrBoardService
+    GithubStore, PrBoardService
   ]
 })
 export class PeriscopeAppComponent {

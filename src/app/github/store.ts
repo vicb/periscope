@@ -9,11 +9,11 @@ import 'rxjs/add/operator/retryWhen';
 import 'rxjs/add/observable/timer';
 
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers} from '@angular/http';
+import {Headers, Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Subscriber} from 'rxjs/Subscriber';
 
-import {PullRequest, Issue, LabelRef, Event} from './v3';
+import {Event, Issue, LabelRef, PullRequest} from './v3';
 
 import {AngularFire, FirebaseObjectObservable,} from 'angularfire2';
 
