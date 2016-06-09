@@ -18,7 +18,7 @@
     "@angular/compiler": "github:angular/compiler-builds",
     "@angular/http": "github:angular/http-builds",
     "@angular/platform-browser": "github:angular/platform-browser-builds",
-    "@angular/router": "github:angular/router-builds",
+    "@angular/router": "^3.0.0-alpha",
     "angularfire2": "^2.0.0-beta.0",
     "es6-shim": "^0.35.0",
     "firebase": "^2.4.2",
