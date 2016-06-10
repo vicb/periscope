@@ -1,29 +1,33 @@
-<h1>WebHook Queue</h1>
-<table>
-  <tr>
-    <th i18n>key</th>
-    <th i18n>action</th>
-    <th i18n>issue</th>
-    <th i18n>PR</th>
-    <th i18n>comment</th>
-    <th i18n>label</th>
-  </tr>
-  <tr *ngFor="let event of events | async">
-    <td>
-      <a href="https://ngperiscope.firebaseio.com/github_webhook_events/{{event.$key}}.json">{{event.$key}}</a>
-    </td>
-    <td>{{event?.action}}</td>
-    <td>{{!!event?.issue}}</td>
-    <td>{{!!event?.pull_request}}</td>
-    <td>{{!!event?.comment}}</td>
-    <td>{{!!event?.label}}</td>
-  </tr>
-</table>
-<h1>All Prs</h1>
-<span *ngFor="let pr of prs | async">
-  <a href="{{pr.html_url}}" target="_blank">#{{pr.number}}</a>
-</span>
-<hr>
-<input type="text" #prNumberInput>
-  <button (click)="syncPr(prNumberInput.value)" i18n>sync PR</button><br>
-<button (click)="syncAllPRs()" i18n>sync All PRs</button><br>
+<md-card>
+  <md-card-title>WebHook Queue</md-card-title>
+  <table>
+    <tr>
+      <th i18n>key</th>
+      <th i18n>action</th>
+      <th i18n>issue</th>
+      <th i18n>PR</th>
+      <th i18n>comment</th>
+      <th i18n>label</th>
+    </tr>
+    <tr *ngFor="let event of events | async">
+      <td>
+        <a href="https://ngperiscope.firebaseio.com/github_webhook_events/{{event.$key}}.json">{{event.$key}}</a>
+      </td>
+      <td>{{event?.action}}</td>
+      <td>{{!!event?.issue}}</td>
+      <td>{{!!event?.pull_request}}</td>
+      <td>{{!!event?.comment}}</td>
+      <td>{{!!event?.label}}</td>
+    </tr>
+  </table>
+</md-card>
+<md-card>
+  <md-card-title>All Prs</md-card-title>
+  <span *ngFor="let pr of prs | async">
+    <a href="{{pr.html_url}}" target="_blank">#{{pr.number}}</a>
+  </span>
+  <hr>
+  <md-input placeholder="PR Number to sync" type="text" #prNumberInput></md-input>
+  <button md-button color="primary" (click)="syncPr(prNumberInput.value)" i18n>SYNC PR</button><br>
+  <button md-raised-button color="primary" (click)="syncAllPRs()" i18n>SYNC ALL PRs</button><br>
+</md-card>

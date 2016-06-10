@@ -4,13 +4,36 @@
 /** Map relative paths to URLs. */
 const map: any = {
   'firebase': 'vendor/firebase/lib/firebase-web.js',
-  'angularfire2': 'vendor/angularfire2'
+  'angularfire2': 'vendor/angularfire2',
+  '@angular2-material': 'vendor/@angular2-material'
 };
 
 /** User packages configuration. */
 const packages: any = {
   angularfire2: {defaultExtension: 'js', main: 'angularfire2.js'}
 };
+
+// put the names of any of your Material components here
+const materialPkgs:string[] = [
+  'button',
+  'card',
+  'checkbox',
+  'core',
+  'grid-list',
+  'icon',
+  'input',
+  'list',
+  'progress-bar',
+  'progress-circle',
+  'radio',
+  'sidenav',
+  'tabs',
+  'toolbar',
+];
+
+materialPkgs.forEach((pkg) => {
+  packages[`@angular2-material/${pkg}`] = {main: `${pkg}.js`};
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************

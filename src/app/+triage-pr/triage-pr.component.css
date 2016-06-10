@@ -1,3 +1,11 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+md-card {
+  margin: 15px;
+}
 table {
   border: 1px solid black;
   border-collapse: collapse;

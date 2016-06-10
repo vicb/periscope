@@ -15,7 +15,7 @@ import {Subscriber} from 'rxjs/Subscriber';
 
 import {Event, Issue, LabelRef, PullRequest} from './v3';
 
-import {AngularFire, FirebaseObjectObservable,} from 'angularfire2';
+import {AngularFire, FirebaseObjectObservable, FirebaseAuth} from 'angularfire2';
 
 const EVENTS = '/github_webhook_events';
 const EVENTS_LEASE = '/github_webhook_events_lease';
@@ -34,8 +34,8 @@ export class GithubStore {
     let [acquireLock, releaseLock] = this.acquireWebhookLock().partition((v) => v.isMaster);
     acquireLock.flatMap((_) => this.getWebhookEvents(1).map((i) => i[0]).filter((v) => !!v))
         .takeUntil(releaseLock)
-        .subscribe((event) => {
-          this._consumeEvent(this.af.database.object(EVENTS + '/' + event['$key']));
+        .subscribe((event: Event) => {
+          this._consumeEvent(this.af.database.object(EVENTS + '/' + (event as any)['$key']));
         });
   }
 
@@ -97,7 +97,7 @@ export class GithubStore {
                      return now + LEASE_TIME;
                    }
                  },
-                 (error, committed: boolean, expirationTimeRef: any) => {
+                 (error: any, committed: boolean, expirationTimeRef: any) => {
                    var duration = expirationTimeRef.val() - now;
                    subscriber.next({isMaster: committed, duration: duration});
                    if (committed) {
@@ -170,7 +170,7 @@ export class GithubStore {
   private _get(path: string, params: {[k: string]: any} = {}): Observable<Response> {
     var authState: FirebaseAuthData = this.af.auth.getAuth();
     var accessToken: string = (<any>authState).github.accessToken;
-    var qParams = [];
+    var qParams: string[] = [];
     Object.keys(params).forEach((key) => qParams.push(key + '=' + params[key]));
     return this.http.get(
         'https://api.github.com/repos/angular/angular' + path + '?' + qParams.join('&'),

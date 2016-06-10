@@ -1,79 +1,81 @@
-<table>
-  <tr>
-    <th></th>
-    <th i18n>Hour</th>
-    <th i18n>Hours</th>
-    <th i18n>Day</th>
-    <th i18n>Days</th>
-    <th i18n>Week</th>
-    <th i18n>Weeks</th>
-    <th i18n>Month</th>
-    <th i18n>Months</th>
-  <tr>
-  <tr>
-    <th i18n>Untriaged {{state.untriaged.length}}</th>
-    <td><app-pr *ngFor="let pr of state.untriaged.hour" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.untriaged.hours" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.untriaged.day" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.untriaged.days" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.untriaged.week" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.untriaged.weeks" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.untriaged.month" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.untriaged.months" [pr]="pr"></app-pr></td>
-  <tr>
-  <tr>
-    <th i18n>Assigned {{state.assigned.length}}</th>
-    <td><app-pr *ngFor="let pr of state.assigned.hour" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.assigned.hours" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.assigned.day" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.assigned.days" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.assigned.week" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.assigned.weeks" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.assigned.month" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.assigned.months" [pr]="pr"></app-pr></td>
-  <tr>
-  <tr>
-    <th i18n>CleanUp {{state.cleanup.length}}</th>
-    <td><app-pr *ngFor="let pr of state.cleanup.hour" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.cleanup.hours" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.cleanup.day" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.cleanup.days" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.cleanup.week" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.cleanup.weeks" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.cleanup.month" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.cleanup.months" [pr]="pr"></app-pr></td>
-  <tr>
-  <tr>
-    <th i18n>Reviewed {{state.reviewed.length}}</th>
-    <td><app-pr *ngFor="let pr of state.reviewed.hour" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.reviewed.hours" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.reviewed.day" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.reviewed.days" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.reviewed.week" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.reviewed.weeks" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.reviewed.month" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.reviewed.months" [pr]="pr"></app-pr></td>
-  <tr>
-  <tr>
-    <th i18n>Ready {{state.ready.length}}</th>
-    <td><app-pr *ngFor="let pr of state.ready.hour" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.ready.hours" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.ready.day" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.ready.days" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.ready.week" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.ready.weeks" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.ready.month" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.ready.months" [pr]="pr"></app-pr></td>
-  <tr>
-  <tr>
-    <th i18n>Other {{state.other.length}}</th>
-    <td><app-pr *ngFor="let pr of state.other.hour" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.other.hours" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.other.day" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.other.days" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.other.week" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.other.weeks" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.other.month" [pr]="pr"></app-pr></td>
-    <td><app-pr *ngFor="let pr of state.other.months" [pr]="pr"></app-pr></td>
-  <tr>
-</table>
+<md-card>
+  <table>
+    <tr>
+      <th></th>
+      <th i18n>Hour</th>
+      <th i18n>Hours</th>
+      <th i18n>Day</th>
+      <th i18n>Days</th>
+      <th i18n>Week</th>
+      <th i18n>Weeks</th>
+      <th i18n>Month</th>
+      <th i18n>Months</th>
+    <tr>
+    <tr>
+      <th i18n>Untriaged {{state.untriaged.length}}</th>
+      <td><app-pr *ngFor="let pr of state.untriaged.hour" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.untriaged.hours" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.untriaged.day" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.untriaged.days" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.untriaged.week" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.untriaged.weeks" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.untriaged.month" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.untriaged.months" [pr]="pr"></app-pr></td>
+    <tr>
+    <tr>
+      <th i18n>Assigned {{state.assigned.length}}</th>
+      <td><app-pr *ngFor="let pr of state.assigned.hour" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.assigned.hours" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.assigned.day" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.assigned.days" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.assigned.week" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.assigned.weeks" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.assigned.month" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.assigned.months" [pr]="pr"></app-pr></td>
+    <tr>
+    <tr>
+      <th i18n>CleanUp {{state.cleanup.length}}</th>
+      <td><app-pr *ngFor="let pr of state.cleanup.hour" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.cleanup.hours" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.cleanup.day" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.cleanup.days" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.cleanup.week" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.cleanup.weeks" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.cleanup.month" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.cleanup.months" [pr]="pr"></app-pr></td>
+    <tr>
+    <tr>
+      <th i18n>Reviewed {{state.reviewed.length}}</th>
+      <td><app-pr *ngFor="let pr of state.reviewed.hour" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.reviewed.hours" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.reviewed.day" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.reviewed.days" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.reviewed.week" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.reviewed.weeks" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.reviewed.month" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.reviewed.months" [pr]="pr"></app-pr></td>
+    <tr>
+    <tr>
+      <th i18n>Ready {{state.ready.length}}</th>
+      <td><app-pr *ngFor="let pr of state.ready.hour" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.ready.hours" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.ready.day" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.ready.days" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.ready.week" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.ready.weeks" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.ready.month" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.ready.months" [pr]="pr"></app-pr></td>
+    <tr>
+    <tr>
+      <th i18n>Other {{state.other.length}}</th>
+      <td><app-pr *ngFor="let pr of state.other.hour" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.other.hours" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.other.day" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.other.days" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.other.week" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.other.weeks" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.other.month" [pr]="pr"></app-pr></td>
+      <td><app-pr *ngFor="let pr of state.other.months" [pr]="pr"></app-pr></td>
+    <tr>
+  </table>
+</md-card>
