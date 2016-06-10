@@ -18,10 +18,13 @@
 
   "files": [
     "main.ts",
-    "typings.d.ts"
+    "typings.d.ts",
+    "app/periscope.component.ts",
+    "app/+sync/sync.component.ts",
+    "app/+triage-pr/triage-pr.component.ts"
   ],
 
   "angularCompilerOptions": {
-    "genDir": "."
+    "genDir": "../dist"
   }
 }

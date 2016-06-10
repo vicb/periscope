@@ -1,15 +1,22 @@
-import {ComponentResolver, ReflectiveInjector, SystemJsCmpFactoryResolver, coreBootstrap} from '@angular/core';
-import {BROWSER_APP_PROVIDERS, browserPlatform} from '@angular/platform-browser';
 import {provideRouter} from '@angular/router';
 
+import {coreBootstrap, ReflectiveInjector, ComponentResolver, SystemJsCmpFactoryResolver} from '@angular/core';
+import {browserPlatform, BROWSER_APP_PROVIDERS} from '@angular/platform-browser';
 import {PeriscopeAppComponentNgFactory} from './app/periscope.component.ngfactory';
 
 const routes = [
   {
+    path: '/',
+    component: './app/periscope.component#PeriscopeAppComponent',
+  },
+  {
     path: '/triage_pr',
     component: './app/+triage-pr/triage-pr.component#TriagePrComponent',
   },
-  {path: '/sync', component: './app/+sync/sync.component#SyncComponent'}
+  {
+    path: '/sync',
+    component: './app/+sync/sync.component#SyncComponent'
+  }
 ];
 
 let providers = [
@@ -20,3 +27,5 @@ let providers = [
 
 const appInjector = ReflectiveInjector.resolveAndCreate(providers, browserPlatform().injector);
 coreBootstrap(PeriscopeAppComponentNgFactory, appInjector);
+
+
