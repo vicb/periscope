@@ -17,6 +17,8 @@ import {Event, Issue, LabelRef, PullRequest} from './v3';
 
 import {AngularFire, FirebaseObjectObservable,} from 'angularfire2';
 
+import * as firebase from 'firebase';
+
 const EVENTS = '/github_webhook_events';
 const EVENTS_LEASE = '/github_webhook_events_lease';
 const LEASE_TIME = 30 * 1000;
@@ -168,7 +170,8 @@ export class GithubStore {
   }
 
   private _get(path: string, params: {[k: string]: any} = {}): Observable<Response> {
-    var authState: FirebaseAuthData = this.af.auth.getAuth();
+    var authState: firebase.User = firebase.auth().currentUser;
+    console.log(authState);
     var accessToken: string = (<any>authState).github.accessToken;
     var qParams = [];
     Object.keys(params).forEach((key) => qParams.push(key + '=' + params[key]));

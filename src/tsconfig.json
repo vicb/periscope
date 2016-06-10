@@ -18,7 +18,8 @@
 
   "files": [
     "main.ts",
-    "typings.d.ts"
+    "typings.d.ts",
+    "fb.d.ts"
   ],
 
   "angularCompilerOptions": {
