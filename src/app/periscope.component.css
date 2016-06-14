@@ -6,3 +6,7 @@
 md-sidenav {
   padding: 15px;
 }
+
+>>> md-toolbar-row {
+  justify-content: space-between;
+}

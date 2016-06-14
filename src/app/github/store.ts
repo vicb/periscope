@@ -98,14 +98,18 @@ export class GithubStore {
                    }
                  },
                  (error: any, committed: boolean, expirationTimeRef: any) => {
-                   var duration = expirationTimeRef.val() - now;
-                   subscriber.next({isMaster: committed, duration: duration});
-                   if (committed) {
-                     lastLease = expirationTimeRef.val();
-                     id = setTimeout(() => subscriber.complete(), duration - LEASE_TIME * .1);
+                   if (error) {
+                     console.error(error); 
                    } else {
-                     lastLease = -1;
-                     id = setTimeout(() => subscriber.complete(), duration);
+                     var duration = expirationTimeRef.val() - now;
+                     subscriber.next({isMaster: committed, duration: duration});
+                     if (committed) {
+                       lastLease = expirationTimeRef.val();
+                       id = setTimeout(() => subscriber.complete(), duration - LEASE_TIME * .1);
+                     } else {
+                       lastLease = -1;
+                       id = setTimeout(() => subscriber.complete(), duration);
+                     }
                    }
                  });
              return () => {

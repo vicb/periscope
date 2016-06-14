@@ -1,30 +1,36 @@
 <md-sidenav-layout fullscreen>
   <md-sidenav #sidenav class="app-sidenav">
     <md-nav-list>
-      <a md-list-item [routerLink]="['/sync']">
-        <md-icon md-list-icon>sync</md-icon> <!--i18n-->Data Sync<!--/i18n-->
-      </a>
       <a md-list-item [routerLink]="['/triage_pr']">
         <md-icon md-list-icon svgSrc="/assets/merge.svg"></md-icon> <!--i18n-->Triage PR<!--/i18n-->
       </a>
-      <a md-list-item href (click)="auth(); $event.preventDefault()" [hidden]="authState">
-        <md-icon md-list-icon>account_circle</md-icon> <!--i18n-->auth<!--/i18n-->
-      </a>
-      <a md-list-item href (click)="logout(); $event.preventDefault()" [hidden]="!authState">
-          <md-icon md-list-icon>account_circle</md-icon> <!--i18n-->signout: {{authState?.github?.username}}<!--/i18n-->
+      <a md-list-item [routerLink]="['/sync']">
+        <md-icon md-list-icon>sync</md-icon> <!--i18n-->Data Sync<!--/i18n-->
       </a>
     </md-nav-list>
 
   </md-sidenav>
 
   <md-toolbar color="primary">
-    <button class="app-icon-button" (click)="sidenav.toggle()" md-icon-button>
-      <md-icon>menu</md-icon>
-    </button>
+    <div>
+      <button class="app-icon-button" (click)="sidenav.toggle()" md-icon-button>
+        <md-icon>menu</md-icon>
+      </button>
 
-    <!--i18n-->Periscope<!--/i18n-->
-
-    <span class="app-toolbar-filler"></span>
+      <!--i18n-->Periscope<!--/i18n-->
+    </div>
+    <div>
+      <button md-button href (click)="auth()" *ngIf="!authState">
+        <!--i18n-->auth<!--/i18n-->
+      </button>
+      <button md-button>
+        <img src="https://avatars3.githubusercontent.com/u/{{authState?.github?.id}}?s=32"
+             style="vertical-align: middle;">
+      </button>
+      <button md-button href (click)="logout()" *ngIf="authState">
+        <!--i18n-->signout: {{authState?.github?.username}}<!--/i18n-->
+      </button>
+    </div>
   </md-toolbar>
 
   <div class="app-content">
