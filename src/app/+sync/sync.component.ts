@@ -10,7 +10,6 @@ import {MD_INPUT_DIRECTIVES} from '@angular2-material/input';
 import {MD_LIST_DIRECTIVES} from '@angular2-material/list';
 import {MD_ICON_DIRECTIVES, MdIconRegistry} from '@angular2-material/icon';
 import {MD_TABS_DIRECTIVES} from '@angular2-material/tabs';
-import {AsyncPipe, NgFor} from '@angular/common';
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
@@ -22,9 +21,7 @@ import {Event} from '../github/v3';
   selector: 'app-sync',
   templateUrl: 'sync.component.html',
   styleUrls: ['sync.component.css'],
-  pipes: [AsyncPipe],
   directives: [
-    NgFor,
     MD_SIDENAV_DIRECTIVES,
     MD_CARD_DIRECTIVES,
     MD_TOOLBAR_DIRECTIVES,

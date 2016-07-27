@@ -1,4 +1,3 @@
-import {NgFor} from '@angular/common';
 import {Component} from '@angular/core';
 
 import {PrBoardService, Staleness} from '../pr-board.service';
@@ -24,7 +23,6 @@ import {MD_TABS_DIRECTIVES} from '@angular2-material/tabs';
   styleUrls: ['triage-pr.component.css'],
   directives: [
     PrComponent, 
-    NgFor,
     MD_SIDENAV_DIRECTIVES,
     MD_CARD_DIRECTIVES,
     MD_TOOLBAR_DIRECTIVES,
