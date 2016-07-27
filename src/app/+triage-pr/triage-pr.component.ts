@@ -6,7 +6,7 @@ import {MD_SIDENAV_DIRECTIVES} from '@angular2-material/sidenav';
 import {MD_TOOLBAR_DIRECTIVES} from '@angular2-material/toolbar';
 import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
 import {MD_CHECKBOX_DIRECTIVES} from '@angular2-material/checkbox';
-import {MD_RADIO_DIRECTIVES, MdRadioDispatcher} from '@angular2-material/radio';
+import {MD_RADIO_DIRECTIVES} from '@angular2-material/radio';
 import {MD_PROGRESS_CIRCLE_DIRECTIVES} from '@angular2-material/progress-circle';
 import {MD_PROGRESS_BAR_DIRECTIVES} from '@angular2-material/progress-bar';
 import {MD_CARD_DIRECTIVES} from '@angular2-material/card';

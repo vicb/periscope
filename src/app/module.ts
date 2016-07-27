@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {PeriscopeAppComponent} from './app';
+import {PeriscopeAppComponent} from './periscope.componentgit';
 import {BrowserModule} from '@angular/platform-browser';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {provideRouter} from '@angular/router';
