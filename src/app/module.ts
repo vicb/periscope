@@ -1,31 +1,38 @@
-import {NgModule} from '@angular/core';
-import {PeriscopeAppComponent} from './periscope.componentgit';
+import {NgModule, ApplicationRef} from '@angular/core';
+import {PeriscopeAppComponent} from './periscope.component';
 import {BrowserModule} from '@angular/platform-browser';
-import {HTTP_PROVIDERS} from '@angular/http';
-import {provideRouter} from '@angular/router';
-import {FIREBASE_PROVIDERS, FirebaseUrl, FirebaseAppConfig, AuthProviders, AuthMethods, FirebaseAuthConfig} from 'angularfire2';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {provideRouter, RouterModule, Routes} from '@angular/router';
+import {FIREBASE_PROVIDERS, FirebaseUrl, 
+  FirebaseAppConfig, AuthProviders, AuthMethods, 
+  FirebaseAuthConfig, FirebaseConfig } from 'angularfire2';
+import {TriagePrComponent} from './+triage-pr/triage-pr.component';
+import {SyncComponent} from './+sync/sync.component';
+import {PrComponent} from './pr/pr.component';
 
-const routes = [
-  {
-    path: '/triage_pr',
-    component: './app/+triage-pr',
-  },
-  {path: '/sync', component: './app/+sync'}
+export const routes: Routes = [
+  { path: 'triage_pr', component: TriagePrComponent },
+  { path: 'sync', component: SyncComponent },
+  { path: '', redirectTo: 'triage_pr', pathMatch: 'full' }
 ];
 
-
 @NgModule({
-  declarations: [PeriscopeAppComponent],
-  imports: [BrowserModule],
+  declarations: [PeriscopeAppComponent, SyncComponent, TriagePrComponent, PrComponent],
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes), HttpModule],
   providers: [
-    provideRouter(routes), 
     FIREBASE_PROVIDERS,
-    // HTTP_PROVIDERS,
-    {provide: FirebaseUrl, useValue: 'https://ngperiscope.firebaseio.com'}, {
-      provide: FirebaseAuthConfig,
-      useValue: {provider: AuthProviders.Github, method: AuthMethods.Popup}
-    },
+    { provide: FirebaseConfig, useValue: {
+      apiKey: "AIzaSyDtDqmYnJVGCBSyiIABFHpo5Hvmu3kjvpU",
+      authDomain: "project-934503789961360947.firebaseapp.com",
+      databaseURL: "https://project-934503789961360947.firebaseio.com",
+      storageBucket: "project-934503789961360947.appspot.com"
+    }},
+    { provide: FirebaseAuthConfig, useValue: {
+      provider: AuthProviders.Github,
+      method: AuthMethods.Redirect
+    }}
   ],
-  entryComponents: [PeriscopeAppComponent]
+  bootstrap: [PeriscopeAppComponent]
 })
-export class PeriscopeModule { }
+export class PeriscopeModule {}

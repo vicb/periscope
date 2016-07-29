@@ -43,11 +43,13 @@ import {MD_TABS_DIRECTIVES} from '@angular2-material/tabs';
   ]
 })
 export class PeriscopeAppComponent {
-  authState: FirebaseAuthState;
+  authState: FirebaseAuthState = null;
 
   constructor(private af: AngularFire) {
-    this.authState = af.auth.getAuth() as any as FirebaseAuthState;
-    console.log(this.authState);
+    af.auth.subscribe((authState: FirebaseAuthState) => {
+      this.authState = authState;
+      console.log(authState);
+    });
   }
 
   auth() { 

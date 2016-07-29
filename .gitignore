@@ -4,7 +4,8 @@
 /dist
 /tmp
 /.vscode
-*.shim.ts
+*.css.shim.ts
+*.css.ts
 *.ngfactory.ts
 
 # dependencies
@@ -28,4 +29,4 @@ testem.log
 /e2e/*.map
 
 #System Files
-.DS_Store
+.DS_Storesrc/ngfactory
