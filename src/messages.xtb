@@ -1,0 +1,30 @@
+<? xml version="1.0" encoding="UTF-8" ?>
+<translationbundle>
+  <translation id="14700a1f403f789c5e2cb18e5b06ee8797e0397f">Triage PR</translation>
+  <translation id="071c8192c566b8e9fcf7b5adb99fe068659b53ee">Data Sync</translation>
+  <translation id="f907a5ebf99855bae22c853b617423ac1cf20718">Periscope</translation>
+  <translation id="19a71c1a18c41ecc68c00acd0e2aa808c65deaaf">authentifier</translation>
+  <translation id="e89ab1e409707cb263e3ce9bf277d509fc3dcb0e">déconnexion: <ph name="INTERPOLATION"/></translation>
+  <translation id="784ffc512bec10884d40400f108e2987e2e5f6e0">Heure</translation>
+  <translation id="3bbce5fef7e1151da052a4e529453edb340e3912">Heures</translation>
+  <translation id="efffb64bda94fa4f4493322c5e3717e845d5dc30">Journée</translation>
+  <translation id="a5c3d9d2296f7886e8289b9f623323803deacfc6">Journées</translation>
+  <translation id="73339760fe932d2b494728d4366947755d127e00">Semaine</translation>
+  <translation id="68bd35df6d91a888f5e0ea3d5f2a322c008b7260">Semaines</translation>
+  <translation id="5bb4a09a669f55893c9a37a8480c8fa3f7ce5702">Mois</translation>
+  <translation id="12cc9773650706e6b16eec367da84f99a1e6399c">Mois</translation>
+  <translation id="0819c779a12edcdbe5bafe398993cf44c108d53c">À nettoyer <ph name="INTERPOLATION"/></translation>
+  <translation id="3b8f4cddef82d2050843dc43c2c0962f032f63d5">Attribué(s) <ph name="INTERPOLATION"/></translation>
+  <translation id="4ab9d5e235719201dbf936d3eb0505afb5dabf19">CleanUp <ph name="INTERPOLATION"/></translation>
+  <translation id="753c0b2dd5d6a6c7ff2a3af76cc39ec86a90fb55">Revu <ph name="INTERPOLATION"/></translation>
+  <translation id="f6fcbbe444df2a0b5b199ccfa7eb1385f8540f47">Prêt <ph name="INTERPOLATION"/></translation>
+  <translation id="1b7680d2e6103ff021ca9e6e611ac43dd6bbce37">clé <ph name="INTERPOLATION"/></translation>
+  <translation id="a93d7bc0981c6bb60dd15032eeb2548f3133a008">key</translation>
+  <translation id="dfd3d645bcee3844123b59ba90450bc104880b59">action</translation>
+  <translation id="8f44533fb069a3163bcdf2e6bb4ba00f58719073">probleme</translation>
+  <translation id="0633bcd20da75f7290e77ffb5e7ae01facdf7cd9">PR</translation>
+  <translation id="81889e47ed5296c16300070bcb899af17cf401d0">commentaire</translation>
+  <translation id="805515e24d17c21a9a559c3d16c7eaea03a348db">étiquette</translation>
+  <translation id="0bb9d33813845617e9524a1e40a516cdd0d5ffe1">ACTUALISER PR</translation>
+  <translation id="6c2f77f8b0fc727d480aa9182209280e7b6ec51b">ACTUALISER TOUS PRs</translation>
+</translationbundle>
